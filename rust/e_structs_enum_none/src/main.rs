@@ -287,3 +287,25 @@ fn plus_two(x: Option<i32>) -> Option<i32> {
 if let Some(3) = some_value {
     println!("Three!");
 }
+// structs object like
+// enum enumerate all variants of a thing
+
+enum Shape {
+    Circle(f64),          // radius
+    Rectangle(f64, f64),  // width, height
+}
+// overloading with enum
+fn area(shape: &Shape) -> f64 {
+    match shape {
+        Shape::Circle(r) => 3.14 * r * r,
+        Shape::Rectangle(w, h) => w * h,
+    }
+}
+
+fn main() {
+    let c = Shape::Circle(2.0);
+    let r = Shape::Rectangle(3.0, 4.0);
+
+    println!("Circle area: {}", area(&c));
+    println!("Rectangle area: {}", area(&r));
+}
