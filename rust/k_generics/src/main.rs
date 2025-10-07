@@ -70,3 +70,17 @@ impl<U> Pnt<U> {
         &self.x
     }
 }
+
+impl<T, U> Point<T, U> {
+    fn mixup<V, W>(self, other: Point<V, W>) -> Point<T, W> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
+// generics reduce duplication and doesn't incur a performance hit
+// at Compile Time Rust will turn Option Enum into two Option enums one for i32 and one for float
+let integer = Option::Some(5);
+let float = Option::Some(3.2);
