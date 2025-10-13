@@ -34,5 +34,19 @@ pub trait Summary {
     fn summarize(&self) -> String;
 }
 
+let article = NewsArticle {
+    author: String::from("John Doe"),
+    headline: String::from("The Sky is Fallling"),
+    content: String::from("The sky is not actually falling")
+}
+pub fn notify(item: &impl Summary) {
+    println!("Breaking News!, {}", item.summarize());
+}
+// same function
+// Type must be something that implements Summary trait
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking News! {}", item.summarize());
+}
+
 println!("Tweet Summary: {}", tweet.summarize());
 println!("Article Summary: {}", article.summarize());

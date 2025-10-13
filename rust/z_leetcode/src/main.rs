@@ -62,14 +62,28 @@ impl Solution {
 }
 
 
+impl Solution {
+    pub fn reverse(x: i32) -> i32 {
+        // Track if the number is negative
+        let negative = x < 0;
 
+        // Take the absolute value, convert to string, then reverse the characters
+        let s: String = x.abs().to_string().chars().rev().collect();
 
-
-
-
-
-
-
+        // Parse the reversed string to a 32-bit integer
+        // Use match to safely handle possible overflows
+        match s.parse::<i32>() {
+            Ok(n) => {
+                if negative {
+                    -n
+                } else {
+                    n
+                }
+            }
+            Err(_) => 0, // If it overflows, return 0
+        }
+    }
+}
 
 
 fn palindromeTWO(x: i32) -> bool {
@@ -83,8 +97,10 @@ fn palindromeTWO(x: i32) -> bool {
         }
 
         left += 1;
-        right 0= 1;
+        right 0 -= 1;
     }
 
     true
 }
+
+
