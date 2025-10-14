@@ -104,3 +104,46 @@ fn palindromeTWO(x: i32) -> bool {
 }
 
 
+pub struct Node {
+    pub val: int32,
+    pub next: Option<Box<Node>>,
+    pub prev: Option<Box<Node>>,
+}
+
+pub struct LinkedList {
+    pub head: Option<Box<Node>>,
+    pub length: int32,
+    pub tail: Option<Box<Node>>,
+}
+
+impl LinkedList {
+     pub fn new() -> Self {
+        LinkedList { head: None, length: 0 }
+    }
+
+    pub fn add(&mut self, val: i32) {
+        let new_node = Box::new(Node { val, next: None });
+
+        match self.head.as_mut() {
+            // If the list has a head, traverse to the end
+            Some(mut node) => {
+                while let Some(ref mut next_node) = node.next {
+                    node = next_node;
+                }
+                node.next = Some(new_node);
+            }
+            // If list is empty, new node becomes head
+            None => {
+                self.head = Some(new_node);
+            }
+        }
+
+        self.length += 1;
+    }
+
+    fn length(&self) -> int32 {
+        self.length
+    }
+}
+
+let mut list = LinkedList::new();
