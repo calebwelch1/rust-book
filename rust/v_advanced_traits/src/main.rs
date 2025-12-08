@@ -104,3 +104,39 @@ trait OutlinePrint: fmt::Display{
         // etc...
     }
 }
+
+// newtype pattern
+struct Age(u32);
+struct ID(u32);
+type Kilometers = i32;
+let x: i32 = 2;
+let y: Kilometers = 5;
+// same type
+
+// never type
+while game_in_progress {
+
+}
+
+
+// advanced types
+
+use std::fmt;
+
+struct Wrapper(Vec<String>);
+
+impl fmt::Display for Wrapper {
+    fn fmt( &self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}]", self.0.join(","))
+    }
+}
+
+// age and id are u32 but we want to prevent user from entering
+// an id where age goes and vice versa
+// newtype pattern
+struct Age(u32);
+struct ID(u32);
+
+// dynamically sized type, size only known at run time
+
+let st: &Str = "Hello there!";
